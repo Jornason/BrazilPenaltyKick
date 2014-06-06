@@ -1,2 +1,5 @@
 cocos2d/
 *.swp
+proj.android/assets/
+proj.android/obj/
+proj.android/bin/
