@@ -50,7 +50,7 @@ void PlayScene::onNodeLoaded(cocos2d::Node * pNode, spritebuilder::NodeLoader * 
 
 void PlayScene::initBallPosition()
 {
-	ball->setPosition(Point(330, 200));
+	ball->setPosition(Point(165, 100));
 }
 
 void PlayScene::startPlay(cocos2d::Ref * sender, cocos2d::extension::Control::EventType pControlEvent) {
