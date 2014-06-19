@@ -6,6 +6,8 @@
 #include "extensions/cocos-ext.h"
 #include "spritebuilder/SpriteBuilder.h"
 
+USING_NS_CC;
+
 class ScoreScene : public cocos2d::Layer
 , public spritebuilder::CCBSelectorResolver
 , public spritebuilder::CCBMemberVariableAssigner
@@ -22,7 +24,8 @@ public:
     }
     
     virtual bool onAssignCCBMemberVariable(cocos2d::Ref* pTarget, const char* pMemberVariableName, cocos2d::Node* pNode) {
-		//SB_MEMBERVARIABLEASSIGNER_GLUE(this, "mMySlider", ControlSlider*, this->mMySlider);
+		SB_MEMBERVARIABLEASSIGNER_GLUE(this, "lastScoreLabel", Label*, lastScoreLabel);
+		SB_MEMBERVARIABLEASSIGNER_GLUE(this, "bestScoreLabel", Label*, bestScoreLabel);
         return false;
     }
     
@@ -53,6 +56,9 @@ public:
 	
     // implement the "static create()" method manually
     CREATE_FUNC(ScoreScene);
+	
+private:
+	Label *lastScoreLabel, *bestScoreLabel;
 };
 
 CREATE_SPRITEBUILDER_LOADER_CLASS(ScoreSceneLoader, ScoreScene);
