@@ -1,5 +1,8 @@
 cocos2d/
 *.swp
+.DS_Store
 proj.android/assets/
 proj.android/obj/
 proj.android/bin/
+psd/BrazilPenaltyKick.spritebuilder/Source/
+psd/BrazilPenaltyKick.spritebuilder/BrazilPenaltyKick.xcodeproj/

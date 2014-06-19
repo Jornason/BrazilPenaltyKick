@@ -1,7 +1,13 @@
 #include "AppDelegate.h"
 #include "HelloWorldScene.h"
 
+#include "MainMenuLayer.h"
+
+#include "spritebuilder/SpriteBuilder.h"
+#include "SimpleAudioEngine.h"
+
 USING_NS_CC;
+using namespace CocosDenshion;
 
 AppDelegate::AppDelegate() {
 
@@ -25,9 +31,21 @@ bool AppDelegate::applicationDidFinishLaunching() {
 
     // set FPS. the default value is 1.0/60 if you don't call this
     director->setAnimationInterval(1.0 / 60);
-
-    // create a scene. it's an autorelease object
-    auto scene = HelloWorld::createScene();
+	
+	Size designSize  = Size(320, 480);
+	Size size = director->getWinSize();
+	float scaleFactor = size.height / designSize.height;
+	glview->setDesignResolutionSize(designSize.width, designSize.height, ResolutionPolicy::EXACT_FIT);
+	director->setContentScaleFactor(scaleFactor / (size.height / 960)); //because the current resource is phonehd's
+	spritebuilder::CCBReader::setupSpriteBuilder("resources-phonehd");
+	
+	SimpleAudioEngine::getInstance()->preloadBackgroundMusic("sounds/bg.mp3");
+	SimpleAudioEngine::getInstance()->playBackgroundMusic("sounds/bg.mp3", true);
+	
+	SimpleAudioEngine::getInstance()->preloadEffect("sounds/warning.mp3");
+	
+	// create a scene. it's an autorelease object
+    auto scene = MainMenuLayer::createScene();
 
     // run
     director->runWithScene(scene);
@@ -40,7 +58,7 @@ void AppDelegate::applicationDidEnterBackground() {
     Director::getInstance()->stopAnimation();
 
     // if you use SimpleAudioEngine, it must be pause
-    // SimpleAudioEngine::sharedEngine()->pauseBackgroundMusic();
+    SimpleAudioEngine::sharedEngine()->pauseBackgroundMusic();
 }
 
 // this function will be called when the app is active again
@@ -48,5 +66,5 @@ void AppDelegate::applicationWillEnterForeground() {
     Director::getInstance()->startAnimation();
 
     // if you use SimpleAudioEngine, it must resume here
-    // SimpleAudioEngine::sharedEngine()->resumeBackgroundMusic();
+    SimpleAudioEngine::sharedEngine()->resumeBackgroundMusic();
 }
