@@ -24,6 +24,9 @@ public:
 	
 	virtual void onNodeLoaded(cocos2d::Node * pNode, spritebuilder::NodeLoader * pNodeLoader);
     virtual bool onAssignCCBMemberVariable(cocos2d::Ref* pTarget, const char* pMemberVariableName, cocos2d::Node* pNode) {
+		SB_MEMBERVARIABLEASSIGNER_GLUE(this, "bonusLayer", Node*, bonusLayer);
+		SB_MEMBERVARIABLEASSIGNER_GLUE(this, "door", Node*, door);
+		
 		SB_MEMBERVARIABLEASSIGNER_GLUE(this, "goalKeeper", Sprite*, goalKeeper);
 		SB_MEMBERVARIABLEASSIGNER_GLUE(this, "shooter", Sprite*, shooter);
 		SB_MEMBERVARIABLEASSIGNER_GLUE(this, "ball", Sprite*, ball);
@@ -31,7 +34,7 @@ public:
 		SB_MEMBERVARIABLEASSIGNER_GLUE(this, "scoreLabel", Label*, scoreLable);
 		SB_MEMBERVARIABLEASSIGNER_GLUE(this, "timeLabel", Label*, timeLabel);
 		
-        return false;
+		return false;
     }
     
     virtual bool onAssignCCBCustomProperty(cocos2d::Ref* target, const char* memberVariableName, const cocos2d::Value& value) {
@@ -52,7 +55,7 @@ public:
 	void initBallPosition();
 	
 	void startPlay(cocos2d::Ref * sender, cocos2d::extension::Control::EventType pControlEvent);
-	
+		
 //  // Here's a difference. Method 'init' in cocos2d-x returns bool, instead of returning 'id' in cocos2d-iphone
 //  virtual bool init();
 //
@@ -72,15 +75,27 @@ public:
 private:
 	void checkTime(float dt);
 	
+	void ballActionDone();
+	
+	bool onContactBegin(const PhysicsContact& contact);
+	
+	void showTips(std::string spriteFileName);
+	void hideTips(Node *node);
+	
 	Sprite* goalKeeper;
 	Sprite* shooter;
-	Sprite* ball;
+	Sprite *ball, *bonusSprite;
 	
 	int score;
 	int seconds;
 
 	Label* scoreLable;
 	Label* timeLabel;
+	
+	Node *bonusLayer, *door;
+	
+	bool isTouchBall;
+	bool hasMoved;
 	
 	GAME_STATUS gameStatus;
 };
