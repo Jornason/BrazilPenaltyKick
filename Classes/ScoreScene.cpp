@@ -6,6 +6,8 @@
 #include "PlayScene.h"
 #include "MainMenuLayer.h"
 
+#include "global.h"
+
 USING_NS_CC;
 USING_NS_CC_EXT;
 
@@ -32,7 +34,14 @@ Node* ScoreScene::createFromUI()
 	spritebuilder::CCBReader * ccbReader = new spritebuilder::CCBReader(ccNodeLoaderLibrary);
 	auto node = ccbReader->readNodeGraphFromFile("ScoreScene.ccbi");
 	return node;
-};
+}
+
+void ScoreScene::onNodeLoaded(cocos2d::Node * pNode, spritebuilder::NodeLoader * pNodeLoader) {
+	loadScore();
+	
+	lastScoreLabel->setString(drScore["lastest_score"]);
+	bestScoreLabel->setString(drScore["best_score"]);
+}
 
 void ScoreScene::play(cocos2d::Ref * sender, cocos2d::extension::Control::EventType pControlEvent) {
 	auto scene = PlayScene::createScene();

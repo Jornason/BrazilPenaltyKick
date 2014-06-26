@@ -72,6 +72,12 @@
 		879D7493194FEC8F008E18E1 /* MainMenuLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 879D7491194FEC8F008E18E1 /* MainMenuLayer.cpp */; };
 		87F03DDA1952C7DC00A26F1F /* assets_graphics_2x_sprite_47_0.png in Resources */ = {isa = PBXBuildFile; fileRef = 87F03DD81952C7DC00A26F1F /* assets_graphics_2x_sprite_47_0.png */; };
 		87F03DDB1952C7DC00A26F1F /* assets_graphics_2x_sprite_47_1.png in Resources */ = {isa = PBXBuildFile; fileRef = 87F03DD91952C7DC00A26F1F /* assets_graphics_2x_sprite_47_1.png */; };
+		87F6DAA6195BACBC008D1136 /* SqliteHandler.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 87F6DAA4195BACBC008D1136 /* SqliteHandler.cpp */; };
+		87F6DAAC195BB2BA008D1136 /* global.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 87F6DAAA195BB2BA008D1136 /* global.cpp */; };
+		87F6DAB0195BBCD4008D1136 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 87F6DAAF195BBCD4008D1136 /* libsqlite3.dylib */; };
+		87F6DAB4195BC7C4008D1136 /* assets_graphics_2x_sprite_60_0.png in Resources */ = {isa = PBXBuildFile; fileRef = 87F6DAB1195BC7C4008D1136 /* assets_graphics_2x_sprite_60_0.png */; };
+		87F6DAB5195BC7C4008D1136 /* assets_graphics_2x_sprite_64_0.png in Resources */ = {isa = PBXBuildFile; fileRef = 87F6DAB2195BC7C4008D1136 /* assets_graphics_2x_sprite_64_0.png */; };
+		87F6DAB6195BC7C4008D1136 /* assets_graphics_2x_sprite_64_1.png in Resources */ = {isa = PBXBuildFile; fileRef = 87F6DAB3195BC7C4008D1136 /* assets_graphics_2x_sprite_64_1.png */; };
 		87FAE2DF19595BFE00D9895D /* util.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 87FAE2DD19595BFE00D9895D /* util.cpp */; };
 		87FB4566195A9D9B00A6C5FC /* assets_graphics_2x_sprite_60_1.png in Resources */ = {isa = PBXBuildFile; fileRef = 87FB455F195A9D9B00A6C5FC /* assets_graphics_2x_sprite_60_1.png */; };
 		87FB4567195A9D9B00A6C5FC /* assets_graphics_2x_sprite_62_0.png in Resources */ = {isa = PBXBuildFile; fileRef = 87FB4560195A9D9B00A6C5FC /* assets_graphics_2x_sprite_62_0.png */; };
@@ -302,6 +308,14 @@
 		879D7492194FEC8F008E18E1 /* MainMenuLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MainMenuLayer.h; path = ../Classes/MainMenuLayer.h; sourceTree = "<group>"; };
 		87F03DD81952C7DC00A26F1F /* assets_graphics_2x_sprite_47_0.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = assets_graphics_2x_sprite_47_0.png; sourceTree = "<group>"; };
 		87F03DD91952C7DC00A26F1F /* assets_graphics_2x_sprite_47_1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = assets_graphics_2x_sprite_47_1.png; sourceTree = "<group>"; };
+		87F6DAA4195BACBC008D1136 /* SqliteHandler.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SqliteHandler.cpp; sourceTree = "<group>"; };
+		87F6DAA5195BACBC008D1136 /* SqliteHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SqliteHandler.h; sourceTree = "<group>"; };
+		87F6DAAA195BB2BA008D1136 /* global.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = global.cpp; path = ../Classes/global.cpp; sourceTree = "<group>"; };
+		87F6DAAB195BB2BA008D1136 /* global.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = global.h; path = ../Classes/global.h; sourceTree = "<group>"; };
+		87F6DAAF195BBCD4008D1136 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS7.1.sdk/usr/lib/libsqlite3.dylib; sourceTree = DEVELOPER_DIR; };
+		87F6DAB1195BC7C4008D1136 /* assets_graphics_2x_sprite_60_0.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = assets_graphics_2x_sprite_60_0.png; sourceTree = "<group>"; };
+		87F6DAB2195BC7C4008D1136 /* assets_graphics_2x_sprite_64_0.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = assets_graphics_2x_sprite_64_0.png; sourceTree = "<group>"; };
+		87F6DAB3195BC7C4008D1136 /* assets_graphics_2x_sprite_64_1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = assets_graphics_2x_sprite_64_1.png; sourceTree = "<group>"; };
 		87FAE2DD19595BFE00D9895D /* util.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = util.cpp; sourceTree = "<group>"; };
 		87FAE2DE19595BFE00D9895D /* util.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = util.h; sourceTree = "<group>"; };
 		87FB455F195A9D9B00A6C5FC /* assets_graphics_2x_sprite_60_1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = assets_graphics_2x_sprite_60_1.png; sourceTree = "<group>"; };
@@ -335,6 +349,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				87F6DAB0195BBCD4008D1136 /* libsqlite3.dylib in Frameworks */,
 				1AC6FB2E180E99EB004C840B /* libbox2d iOS.a in Frameworks */,
 				1AC6FB2F180E99EB004C840B /* libchipmunk iOS.a in Frameworks */,
 				1AC6FB30180E99EB004C840B /* libcocos2dx iOS.a in Frameworks */,
@@ -400,6 +415,9 @@
 				1AFAF8B316D35DE700DB1158 /* AppDelegate.cpp */,
 				1AFAF8B416D35DE700DB1158 /* AppDelegate.h */,
 				87FAE2DC19595BFE00D9895D /* cocos2dx */,
+				87F6DAA3195BACBC008D1136 /* db */,
+				87F6DAAA195BB2BA008D1136 /* global.cpp */,
+				87F6DAAB195BB2BA008D1136 /* global.h */,
 				1AFAF8B516D35DE700DB1158 /* HelloWorldScene.cpp */,
 				1AFAF8B616D35DE700DB1158 /* HelloWorldScene.h */,
 				879D7491194FEC8F008E18E1 /* MainMenuLayer.cpp */,
@@ -457,6 +475,7 @@
 		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				87F6DAAF195BBCD4008D1136 /* libsqlite3.dylib */,
 				D6B0611A1803AB670077942B /* CoreMotion.framework */,
 				503AE11A17EB9C5A00D1A890 /* IOKit.framework */,
 				503AE11117EB99EE00D1A890 /* libcurl.dylib */,
@@ -524,6 +543,9 @@
 		78C7DDAA14EBA5050085D0C2 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				87F6DAB1195BC7C4008D1136 /* assets_graphics_2x_sprite_60_0.png */,
+				87F6DAB2195BC7C4008D1136 /* assets_graphics_2x_sprite_64_0.png */,
+				87F6DAB3195BC7C4008D1136 /* assets_graphics_2x_sprite_64_1.png */,
 				87FB4577195AA66600A6C5FC /* assets_graphics_2x_sprite_50_0.png */,
 				87FB4578195AA66600A6C5FC /* assets_graphics_2x_sprite_50_1.png */,
 				87FB4579195AA66600A6C5FC /* assets_graphics_2x_sprite_50_2.png */,
@@ -563,6 +585,16 @@
 			);
 			name = util;
 			path = ../Classes/util;
+			sourceTree = "<group>";
+		};
+		87F6DAA3195BACBC008D1136 /* db */ = {
+			isa = PBXGroup;
+			children = (
+				87F6DAA4195BACBC008D1136 /* SqliteHandler.cpp */,
+				87F6DAA5195BACBC008D1136 /* SqliteHandler.h */,
+			);
+			name = db;
+			path = ../Classes/db;
 			sourceTree = "<group>";
 		};
 		87FAE2DC19595BFE00D9895D /* cocos2dx */ = {
@@ -764,6 +796,7 @@
 				87FB4574195A9DB100A6C5FC /* assets_graphics_2x_sprite_41_3.png in Resources */,
 				50EF629617ECD46A001EB2F8 /* Icon-40.png in Resources */,
 				87FB456A195A9D9B00A6C5FC /* assets_graphics_2x_sprite_62_3.png in Resources */,
+				87F6DAB6195BC7C4008D1136 /* assets_graphics_2x_sprite_64_1.png in Resources */,
 				87FB4582195AA66600A6C5FC /* assets_graphics_2x_sprite_50_3.png in Resources */,
 				5087E78217EB970100C73F5D /* Icon-144.png in Resources */,
 				87FB4584195AA66600A6C5FC /* assets_graphics_2x_sprite_50_5.png in Resources */,
@@ -772,7 +805,9 @@
 				87FB4581195AA66600A6C5FC /* assets_graphics_2x_sprite_50_2.png in Resources */,
 				5087E78417EB970100C73F5D /* Icon-57.png in Resources */,
 				87FB4572195A9DB100A6C5FC /* assets_graphics_2x_sprite_1_1.png in Resources */,
+				87F6DAB4195BC7C4008D1136 /* assets_graphics_2x_sprite_60_0.png in Resources */,
 				87FB4568195A9D9B00A6C5FC /* assets_graphics_2x_sprite_62_1.png in Resources */,
+				87F6DAB5195BC7C4008D1136 /* assets_graphics_2x_sprite_64_0.png in Resources */,
 				87FB456C195A9D9B00A6C5FC /* assets_graphics_2x_sprite_62_5.png in Resources */,
 				87FB4580195AA66600A6C5FC /* assets_graphics_2x_sprite_50_1.png in Resources */,
 				870337501950151D00C2D53C /* Published-iOS in Resources */,
@@ -804,11 +839,13 @@
 			files = (
 				503AE10017EB989F00D1A890 /* AppController.mm in Sources */,
 				503AE10217EB989F00D1A890 /* RootViewController.mm in Sources */,
+				87F6DAA6195BACBC008D1136 /* SqliteHandler.cpp in Sources */,
 				87FAE2DF19595BFE00D9895D /* util.cpp in Sources */,
 				870337581950320800C2D53C /* PlayScene.cpp in Sources */,
 				1AFAF8B716D35DE700DB1158 /* AppDelegate.cpp in Sources */,
 				879D7493194FEC8F008E18E1 /* MainMenuLayer.cpp in Sources */,
 				503AE10117EB989F00D1A890 /* main.m in Sources */,
+				87F6DAAC195BB2BA008D1136 /* global.cpp in Sources */,
 				1AFAF8B816D35DE700DB1158 /* HelloWorldScene.cpp in Sources */,
 				870337571950320800C2D53C /* ScoreScene.cpp in Sources */,
 				876283FE195A6AA100A9BFE4 /* util.cpp in Sources */,

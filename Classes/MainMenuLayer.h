@@ -22,12 +22,10 @@ public:
 	
 	static cocos2d::Node* createFromUI();
 	
-	virtual void onNodeLoaded(cocos2d::Node * pNode, spritebuilder::NodeLoader * pNodeLoader) {
-		CCLOG("UI onnodeloaded");
-    }
+	virtual void onNodeLoaded(cocos2d::Node * pNode, spritebuilder::NodeLoader * pNodeLoader);
     
     virtual bool onAssignCCBMemberVariable(cocos2d::Ref* pTarget, const char* pMemberVariableName, cocos2d::Node* pNode) {
-		//SB_MEMBERVARIABLEASSIGNER_GLUE(this, "mMySlider", ControlSlider*, this->mMySlider);
+		SB_MEMBERVARIABLEASSIGNER_GLUE(this, "switchSoundButton", ControlButton*, switchSoundButton);
         return false;
     }
     
@@ -52,9 +50,7 @@ public:
 		cocos2d::Director::getInstance()->replaceScene(scene);
     }
 	
-	void switchSound(cocos2d::Ref * sender, cocos2d::extension::Control::EventType pControlEvent) {
-		CCLOG("switchsound");
-    }
+	void switchSound(cocos2d::Ref * sender, cocos2d::extension::Control::EventType pControlEvent);
 	
 //  // Here's a difference. Method 'init' in cocos2d-x returns bool, instead of returning 'id' in cocos2d-iphone
 //  virtual bool init();
@@ -64,6 +60,13 @@ public:
 	
     // implement the "static create()" method manually
     CREATE_FUNC(MainMenuLayer);
+	
+private:
+	void setSwitchSoundButtonSprite();
+	
+	ControlButton *switchSoundButton;
+	
+	int musicOn;
 };
 
 CREATE_SPRITEBUILDER_LOADER_CLASS(MainMenuLayerLoader, MainMenuLayer);

@@ -34,6 +34,8 @@ public:
 		SB_MEMBERVARIABLEASSIGNER_GLUE(this, "scoreLabel", Label*, scoreLable);
 		SB_MEMBERVARIABLEASSIGNER_GLUE(this, "timeLabel", Label*, timeLabel);
 		
+		SB_MEMBERVARIABLEASSIGNER_GLUE(this, "switchSoundButton", ControlButton*, switchSoundButton);
+		
 		return false;
     }
     
@@ -49,12 +51,14 @@ public:
     };
     virtual cocos2d::extension::Control::Handler onResolveCCBCCControlSelector(cocos2d::Ref * pTarget, const char* pSelectorName) {
         CCB_SELECTORRESOLVER_CCCONTROL_GLUE(this, "startPlay", PlayScene::startPlay);
+		CCB_SELECTORRESOLVER_CCCONTROL_GLUE(this, "switchSound", PlayScene::switchSound);
         return NULL;
     }
 	
 	void initBallPosition();
 	
 	void startPlay(cocos2d::Ref * sender, cocos2d::extension::Control::EventType pControlEvent);
+	void switchSound(cocos2d::Ref * sender, cocos2d::extension::Control::EventType pControlEvent);
 		
 //  // Here's a difference. Method 'init' in cocos2d-x returns bool, instead of returning 'id' in cocos2d-iphone
 //  virtual bool init();
@@ -82,15 +86,20 @@ private:
 	void showTips(std::string spriteFileName);
 	void hideTips(Node *node);
 	
+	void setSwitchSoundButtonSprite();
+		
 	Sprite* goalKeeper;
 	Sprite* shooter;
 	Sprite *ball, *bonusSprite;
 	
-	int score;
+	int score, bestScore;
 	int seconds;
 
-	Label* scoreLable;
-	Label* timeLabel;
+	Label *scoreLable, *timeLabel;
+	
+	ControlButton *switchSoundButton;
+	
+	int musicOn;
 	
 	Node *bonusLayer, *door;
 	

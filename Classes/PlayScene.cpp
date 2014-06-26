@@ -8,6 +8,8 @@
 #include "cocos2dx/util.h"
 #include "util/util.h"
 
+#include "global.h"
+
 USING_NS_CC;
 USING_NS_CC_EXT;
 
@@ -47,12 +49,21 @@ Node* PlayScene::createFromUI()
 void PlayScene::onNodeLoaded(cocos2d::Node * pNode, spritebuilder::NodeLoader * pNodeLoader) {
 	Size visibleSize = Director::getInstance()->getVisibleSize();
 	
+	loadSetting();
+	loadScore();
+	
+	musicOn = atoi(drSetting["music_on"].c_str());
+	
 	score = 0;
+	bestScore = atoi(drScore["best_score"].c_str());
 	seconds = 40;
 	
 	gameStatus = GAME_WAITING;
 	
 	bonusSprite = NULL;
+	
+	// 控制音效开关
+	setSwitchSoundButtonSprite();
 	
 	scoreLable->setString(StringUtils::format("%d", score));
 	timeLabel->setString(StringUtils::format("0:%02d", seconds));
@@ -97,6 +108,44 @@ void PlayScene::startPlay(cocos2d::Ref * sender, cocos2d::extension::Control::Ev
 	_eventDispatcher->addEventListenerWithSceneGraphPriority(touchListener, this);
 	
 	schedule(schedule_selector(PlayScene::checkTime), 1);
+}
+
+void PlayScene::switchSound(cocos2d::Ref * sender, cocos2d::extension::Control::EventType pControlEvent) {
+	if (musicOn == 1)
+	{
+		musicOn = 0;
+	}
+	else
+	{
+		musicOn = 1;
+	}
+	
+	saveSetting(musicOn);
+	setSwitchSoundButtonSprite();
+}
+
+void PlayScene::setSwitchSoundButtonSprite()
+{
+	SpriteFrame *musicSpriteFrame;
+	if (musicOn == 1)
+	{
+		musicSpriteFrame = getSpriteFrame("assets_graphics_2x_sprite_64_0.png");
+		
+		SimpleAudioEngine::getInstance()->setBackgroundMusicVolume(100);
+		SimpleAudioEngine::getInstance()->setEffectsVolume(100);
+	}
+	else
+	{
+		musicSpriteFrame = getSpriteFrame("assets_graphics_2x_sprite_64_1.png");
+		
+		SimpleAudioEngine::getInstance()->setBackgroundMusicVolume(0);
+		SimpleAudioEngine::getInstance()->setEffectsVolume(0);
+	}
+	
+	switchSoundButton->setBackgroundSpriteFrameForState(musicSpriteFrame, Control::State::NORMAL);
+	switchSoundButton->setBackgroundSpriteFrameForState(musicSpriteFrame, Control::State::HIGH_LIGHTED);
+	switchSoundButton->setBackgroundSpriteFrameForState(musicSpriteFrame, Control::State::DISABLED);
+	switchSoundButton->setBackgroundSpriteFrameForState(musicSpriteFrame, Control::State::SELECTED);
 }
 
 bool PlayScene::onContactBegin(const cocos2d::PhysicsContact &contact)
@@ -354,6 +403,12 @@ void PlayScene::checkTime(float dt)
 	if (seconds <= 0)
 	{
 		gameStatus = GAME_STOP;
+		
+		if (score > bestScore)
+		{
+			bestScore = score;
+		}
+		saveScore(score, bestScore);
 		
 		auto scene = ScoreScene::createScene();
 		Director::getInstance()->replaceScene(scene);

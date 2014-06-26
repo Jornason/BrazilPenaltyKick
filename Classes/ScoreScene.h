@@ -19,9 +19,7 @@ public:
 	
 	static cocos2d::Node* createFromUI();
 	
-	virtual void onNodeLoaded(cocos2d::Node * pNode, spritebuilder::NodeLoader * pNodeLoader) {
-		CCLOG("UI onnodeloaded");
-    }
+	virtual void onNodeLoaded(cocos2d::Node * pNode, spritebuilder::NodeLoader * pNodeLoader);
     
     virtual bool onAssignCCBMemberVariable(cocos2d::Ref* pTarget, const char* pMemberVariableName, cocos2d::Node* pNode) {
 		SB_MEMBERVARIABLEASSIGNER_GLUE(this, "lastScoreLabel", Label*, lastScoreLabel);
