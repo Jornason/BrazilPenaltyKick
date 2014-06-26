@@ -108,6 +108,7 @@ void PlayScene::startPlay(cocos2d::Ref * sender, cocos2d::extension::Control::Ev
 	_eventDispatcher->addEventListenerWithSceneGraphPriority(touchListener, this);
 	
 	schedule(schedule_selector(PlayScene::checkTime), 1);
+	schedule(schedule_selector(PlayScene::checkTips), 0.3);
 }
 
 void PlayScene::switchSound(cocos2d::Ref * sender, cocos2d::extension::Control::EventType pControlEvent) {
@@ -159,7 +160,7 @@ bool PlayScene::onContactBegin(const cocos2d::PhysicsContact &contact)
 	{
 		hitScore = 20;
 		
-		showTips("assets_graphics_2x_sprite_62_0.png");
+		tipsQueue.push_back("assets_graphics_2x_sprite_62_0.png");
 	}
 	else if ((shapea->getCategoryBitmask() == SCORE_BONUS_SHAPE) || (shapeb->getCategoryBitmask() == SCORE_BONUS_SHAPE))
 	{
@@ -174,7 +175,7 @@ bool PlayScene::onContactBegin(const cocos2d::PhysicsContact &contact)
 		
 		bonusSprite->runAction(bonusActionSeq);
 		
-		showTips("assets_graphics_2x_sprite_62_1.png");
+		tipsQueue.push_back("assets_graphics_2x_sprite_62_1.png");
 	}
 	else if ((shapea->getCategoryBitmask() == TIME_BONUS_SHAPE) || (shapeb->getCategoryBitmask() == TIME_BONUS_SHAPE))
 	{
@@ -188,7 +189,7 @@ bool PlayScene::onContactBegin(const cocos2d::PhysicsContact &contact)
 		
 		bonusSprite->runAction(bonusActionSeq);
 		
-		showTips("assets_graphics_2x_sprite_62_2.png");
+		tipsQueue.push_back("assets_graphics_2x_sprite_62_2.png");
 	}
 	else if ((shapea->getCategoryBitmask() == KEEPER_SHAPE) || (shapeb->getCategoryBitmask() == KEEPER_SHAPE))
 	{
@@ -219,7 +220,7 @@ void PlayScene::showTips(std::string spriteFileName)
 	tips->setPosition(160, 270);
 	tips->setScale(0.2f);
 	this->addChild(tips, 100);
-	
+
 	ScaleTo *scaleTo = ScaleTo::create(0.3, 1);
 	MoveTo *moveTo = MoveTo::create(0.3, Point(tips->getPositionX(), tips->getPositionY() + 5));
 	Sequence *seq = Sequence::create(scaleTo, moveTo, CallFuncN::create(CC_CALLBACK_1(PlayScene::hideTips, this)), NULL);
@@ -362,37 +363,33 @@ void PlayScene::checkTime(float dt)
 	
 	if (bonusSprite == NULL)
 	{
-		// TODO 是否生成奖励
+		// 是否生成奖励
 		int randno = rand() % 10;
 		if (randno == 5) // 可以生成奖励
 		{
+			int bonusNo = rand() % 2;
 			
-		}
-		
-		int bonusNo = rand() % 2;
-		
-		PhysicsBody* bonusBody = PhysicsBody::createCircle(13);
-		
-		if (bonusNo == 0)
-		{
-			bonusBody->setCategoryBitmask(SCORE_BONUS_SHAPE);
+			PhysicsBody* bonusBody = PhysicsBody::createCircle(13);
 			bonusBody->setContactTestBitmask(BALL_SHAPE);
 			bonusBody->setCollisionBitmask(0);
 			
-			bonusSprite = Sprite::create("assets_graphics_2x_sprite_41_0.png");
-		}
-		else
-		{
-			bonusBody->setCategoryBitmask(TIME_BONUS_SHAPE);
-			bonusBody->setContactTestBitmask(BALL_SHAPE);
-			bonusBody->setCollisionBitmask(0);
+			if (bonusNo == 0)
+			{
+				bonusBody->setCategoryBitmask(SCORE_BONUS_SHAPE);
+				
+				bonusSprite = Sprite::create("assets_graphics_2x_sprite_41_0.png");
+			}
+			else
+			{
+				bonusBody->setCategoryBitmask(TIME_BONUS_SHAPE);
+				
+				bonusSprite = Sprite::create("assets_graphics_2x_sprite_41_1.png");
+			}
 			
-			bonusSprite = Sprite::create("assets_graphics_2x_sprite_41_1.png");
+			bonusSprite->setPosition(genRandom(62, 260), genRandom(360, 412));
+			bonusSprite->setPhysicsBody(bonusBody);
+			bonusLayer->addChild(bonusSprite);
 		}
-		
-		bonusSprite->setPosition(genRandom(62, 260), genRandom(360, 412));
-		bonusSprite->setPhysicsBody(bonusBody);
-		bonusLayer->addChild(bonusSprite);
 	}
 	
 	if (seconds <= 5)
@@ -413,4 +410,21 @@ void PlayScene::checkTime(float dt)
 		auto scene = ScoreScene::createScene();
 		Director::getInstance()->replaceScene(scene);
 	}
+}
+
+void PlayScene::checkTips(float dt)
+{
+	if (gameStatus != GAME_RUNNING)
+	{
+		return;
+	}
+	
+	if (tipsQueue.size() == 0)
+	{
+		return;
+	}
+	
+	std::string spriteFileName = tipsQueue[0];
+	tipsQueue.erase(tipsQueue.begin());
+	showTips(spriteFileName);
 }

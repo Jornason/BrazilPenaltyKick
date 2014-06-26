@@ -78,6 +78,7 @@ public:
 	
 private:
 	void checkTime(float dt);
+	void checkTips(float dt);
 	
 	void ballActionDone();
 	
@@ -102,6 +103,8 @@ private:
 	int musicOn;
 	
 	Node *bonusLayer, *door;
+	
+	std::vector<std::string> tipsQueue;
 	
 	bool isTouchBall;
 	bool hasMoved;
